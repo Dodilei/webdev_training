@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="assets/stylesheet.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono">
+      <script src="assets/script.js"></script>
+    </head>
+
+    <body>
+      <div id="headdiv" class="c_default_back_overlay">
+        <h1 id="headtext" class="c_highlight_txt">Testing facility</h1>
+      </div>
+      <div class="c_default_back mainarea">
+        
+        <div id="ctd1" class="contentdiv">
+          <div id="activecolor"></div>
+          <div id="colorchooser">
+            <button class="colorchoice" id="cc1" onclick="ColorChoose('cc1')"></button>
+            <button class="colorchoice" id="cc2" onclick="ColorChoose('cc2')"></button>
+            <button class="colorchoice" id="cc3" onclick="ColorChoose('cc3')"></button>
+          </div>
+        </div>
+
+        <div id="ctd2" class="contentdiv">
+          <div>
+            <div style="display: flex; margin: auto; text-align: center;">
+              <button class="counteritem" onclick="Counter(-1)" id="counterminus">-</button>
+              <div id="ctlparent" class="counteritem"><span id="counterlabel" style="font-size: 3rem; font-family: sans; color: gainsboro;">0</span></div>
+              <button class="counteritem" onclick="Counter(1)" id="counterplus">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="ctd3" class="contentdiv">
+          <div id="datechoice">
+            <div class="datecontainer"><label for="year" class="dtlabel" id="dtl1">year</label><input min=0 type="number" value=2000 onblur="DateInputSet(this)" class="dtinput" id="dti1" name="year"></div>
+
+            <div class="datecontainer"><label for="month" class="dtlabel" id="dtl2">month</label><input max=12 min=1 type="number" value=1 onblur="DateInputSet(this)" class="dtinput" id="dti2" name="month"></div>
+
+            <div class="datecontainer"><label for="day" class="dtlabel" id="dtl3">day</label><input max=31 min=1 type="number" value=1 onblur="DateInputSet(this)" class="dtinput" id="dti3" name="day"></div>
+
+            <div class="datecontainer"><label for="hour" class="dtlabel" id="dtl4">hour</label><input max=24 min=0 type="number" value=00 onblur="DateInputSet(this)" class="dtinput" id="dti4" name="hour"></div>
+
+            <div class="datecontainer"><label for="minute" class="dtlabel" id="dtl5">minute</label><input max=60 min=0 type="number" value=00 onblur="DateInputSet(this)" class="dtinput" id="dti5" name="minute"></div>
+
+            <div class="datecontainer"><label for="second" class="dtlabel" id="dtl6">second</label><input max=60 min=0 type="number" value=00 onblur="DateInputSet(this)" class="dtinput" id="dti6" name="second"></div>
+
+            <div class="datecontainer bcd_container">
+              <button onclick="DisplayChosenDate()" class="chosen_date_button" id="display_chosen_date">display</button>
+            </div>
+
+            <div class="datecontainer bcd_container">
+              <button onclick="DisplayChosenDate(); SendToCountdown()" class="chosen_date_button" id="send_chosen_date">count<br/>down</button>
+            </div>
+          </div>
+          <div id="chosen_date_container">
+            <h4 id="chosen_date">
+              <span class="date_label" id="cdl1">0000</span>/<span class="date_label" id="cdl2">00</span>/<span class="date_label" id="cdl3">00</span>
+              <span class="date_label" id="cdl4">00</span>:<span class="date_label" id="cdl5">00</span>:<span class="date_label" id="cdl6">00</span>
+            </h4>
+          </div>
+          <div><span id="ctdlabel"></span></div>
+        </div>
+        <div id="ctd4" class="contentdiv">
+          <div id="countdown_container">
+            <div id="data1" style="display: none"></div>
+            <h4 id="countdown">
+              <span class="date_label" id="ctdl1">0000</span>/<span class="date_label" id="ctdl2">00</span>/<span class="date_label" id="ctdl3">00</span>
+              <span class="date_label" id="ctdl4">00</span>:<span class="date_label" id="ctdl5">00</span>:<span class="date_label" id="ctdl6">00</span>
+            </h4>
+            <div class="datecontainer bcd_container">
+              <button onclick="clearInterval(document.getElementById('data1').innerHTML)" class="chosen_date_button" id="stop_countdown">stop</button>
+            </div>
+          </div>
+        </div>
+        <div id="ctd5" class="contentdiv">
+          <div id="task_adder_container">
+            <label for="task_input" id="task_editor_label">add task</label>
+            <input type="text" id="task_input" onfocus="this.value = ''; this.style.color='#000000';" onblur="ResetInput(this);" onmouseout="setTimeout(LostFocus, 2500, this);" value="Write a new task" maxlength="25" data="empty">
+            <script>SetTrigger('task_input', SetTask, 'Enter')</script>
+          </div>
+          <div id="tasks_container" data-tasknum="0"></div>
+        </div>
+      </div>
+    </body>
+
+  </html>
